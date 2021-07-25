@@ -8,5 +8,5 @@ variables:
   buildConfig: 'Debug'
 
 steps:
-  - script: dotnet build src\MyPipelineDemo.csproj
+  - script: dotnet build 'src\MyPipelineDemo.csproj'
   # - script: dotnet test
