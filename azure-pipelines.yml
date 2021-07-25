@@ -1,0 +1,12 @@
+# Build, Test .NET Core apps
+# Demo Pipeline
+
+trigger: 
+  - master
+
+variables:
+  buildConfig: 'Debug'
+
+steps:
+  - script: dotnet build -c ${buildConfig} src\MyPipelineDemo.csproj
+  # - script: dotnet test
