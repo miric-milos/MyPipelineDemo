@@ -9,7 +9,7 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     steps:
-      - script: dotnet build 'src\MyPipelineDemo.csproj'
+      - script: dotnet build 'src\MyPipelineDemo\MyPipelineDemo.csproj'
 
   - job: Test
     pool:
