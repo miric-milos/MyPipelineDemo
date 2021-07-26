@@ -7,6 +7,15 @@ trigger:
 variables:
   buildConfig: 'Debug'
 
-steps:
-  - script: dotnet build 'src\MyPipelineDemo.csproj'
-  # - script: dotnet test
+jobs:
+  - job: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - script: dotnet build 'src\MyPipelineDemo.csproj'
+
+  - job: RunTests
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - script: dotnet test 'test\MyPipelineDemo.Tests\MyPipelineDemo.Tests.csproj'
