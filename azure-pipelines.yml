@@ -4,9 +4,6 @@
 trigger: 
   - master
 
-variables:
-  buildConfig: 'Debug'
-
 jobs:
   - job: Build
     pool:
@@ -14,7 +11,7 @@ jobs:
     steps:
       - script: dotnet build 'src\MyPipelineDemo.csproj'
 
-  - job: RunTests
+  - job: Test
     pool:
       vmImage: ubuntu-latest
     steps:
