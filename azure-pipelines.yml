@@ -10,9 +10,11 @@ jobs:
       vmImage: ubuntu-latest
     steps:
       - script: dotnet build 'src\MyPipelineDemo\MyPipelineDemo.csproj'
+        displayName: 'Build Project'
 
   - job: Test
     pool:
       vmImage: ubuntu-latest
     steps:
       - script: dotnet test 'test\MyPipelineDemo.Tests\MyPipelineDemo.Tests.csproj'
+        displayName: 'Run Unit Tests'
