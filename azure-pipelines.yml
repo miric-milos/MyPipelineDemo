@@ -17,4 +17,4 @@ jobs:
       vmImage: ubuntu-latest
     steps:
       - script: dotnet test 'test\MyPipelineDemo.Tests\MyPipelineDemo.Tests.csproj'
-        displayName: 'Run Unit Tests'
+        displayName: 'Run Tests'
