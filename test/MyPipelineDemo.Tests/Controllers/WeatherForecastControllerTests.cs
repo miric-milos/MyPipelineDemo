@@ -32,7 +32,7 @@ namespace MyPipelineDemo.Controllers.Tests
             var expected = "Bracing";
             
             // Act
-            var actual = controller.Get(12) as OkObjectResult;
+            var actual = controller.Get(1) as OkObjectResult;
 
             // Assert
             Assert.NotNull(actual);
