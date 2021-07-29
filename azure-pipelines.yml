@@ -1,20 +1,33 @@
-# Build, Test .NET Core apps
-# Demo Pipeline
 
-trigger: 
-  - master
+variables:
+  restoreBuildProjects: '**/*.csproj'
+  buildConfig: Release
 
-jobs:
-  - job: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: dotnet build 'src\MyPipelineDemo\MyPipelineDemo.csproj'
-        displayName: 'Build Project'
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: restore
+      projects: '$(restoreBuildProjects)'
 
-  - job: Test
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: dotnet test 'test\MyPipelineDemo.Tests\MyPipelineDemo.Tests.csproj'
-        displayName: 'Run Tests'
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: build
+      projects: '$(restoreBuildProjects)'
+      arguments: '-c $(buildConfig)'
+
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: '$(restoreBuildProjects)'
+      arguments: '-c $(buildConfig) --collect "Code Coverage"'
+  
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+      command: publish
+      publishWebProjects: True
+      arguments: '-c $(buildConfig) -o $(build.artifactstagingdirectory)'
+      zipAfterPublish: True
