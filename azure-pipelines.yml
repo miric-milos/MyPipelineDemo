@@ -1,7 +1,7 @@
 
 variables:
   restoreBuildProjects: '**/*.csproj'
-  buildConfig: Release
+  buildConfig: Debug
 
 steps:
   - task: DotNetCoreCLI@2
