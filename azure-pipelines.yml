@@ -31,3 +31,9 @@ steps:
       publishWebProjects: True
       arguments: '-c $(buildConfig) -o $(build.artifactstagingdirectory)'
       zipAfterPublish: True
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
