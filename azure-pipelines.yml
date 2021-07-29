@@ -14,14 +14,12 @@ steps:
     displayName: Build
     inputs:
       command: build
-      projects: '$(restoreBuildProjects)'
       arguments: '-c $(buildConfig)'
 
   - task: DotNetCoreCLI@2
     displayName: Test
     inputs:
       command: test
-      projects: '$(restoreBuildProjects)'
       arguments: '-c $(buildConfig) --collect "Code Coverage"'
   
   - task: DotNetCoreCLI@2
